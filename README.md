@@ -15,21 +15,30 @@ Byte order for all packets are network order (BIG ENDIAN).
 | Payload       | N x 1Bytes    |               | Payload           |
 | Stop          | 1Byte         | 0x55          | End Byte          |
 
+<br>
+
+<img src=https://github.com/edodm85/DOT_Protocol_Specification/blob/master/Resources/flowchart.jpg >
+
+<br>
+
 
 ## 1. Start and Stop
 
 The packet starts with a Start Byte (0xAA) and ends with a Stop Byte (0x55) for easy parsing.
 
+<br>
 
 ## 2. Version
 
 The second Byte is the protocol Version (now is 0x01).
 
+<br>
 
 ## 3. Lenght
 
 The Length is the payload length plus two (type and stop Byte).
 
+<br>
 
 ## 4. Type
 
@@ -41,6 +50,7 @@ The Type identifies if the data is a response or command.
 | 0x02          | Command Response |
 | 0x05          | Image Response   |
 
+<br>
 
 ## 5. Payload
 
@@ -58,6 +68,7 @@ Each table row describes a command:
 | Set Flash            | 2Bytes        | 0x30          | 0x0: OFF or 0x1: ON | 0x2           |
 | Get Flash status     | 1Byte         | 0x35          | --                  | 0x2           |
 
+<br>
 
 ### 5.2.1 Payload Command Response 0x02
 
@@ -68,7 +79,7 @@ The response message is described in this way:
 | Byte 1        | Command Echo     | 1Byte         | 
 | Byte 2        | Response         | NBytes        |
 
-
+<br>
 
 ### 5.2.2 Payload Image Response 0x05
 
