@@ -17,7 +17,7 @@ Byte order for all packets are network order (BIG ENDIAN).
 
 <br>
 
-<img src=https://github.com/edodm85/DOT_Protocol_Specification/blob/master/Resources/flowchart.jpg >
+<img src=https://github.com/edodm85/DOT_Protocol_Specification/blob/master/Resources/flowchart_v1.jpg >
 
 <br>
 
@@ -58,11 +58,11 @@ The Type identifies if the data is a response or command.
 
 Each table row describes a command:
 
-| Function      | Size          | Byte 1        | Byte 2        | Response Type | 
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| Snap a Image  | 1Byte         | 0x10          | --            | 0x5           |
-| Start Grab    | 1Byte         | 0x11          | --            | 0x5           |
-| Stop Grab     | 1Byte         | 0x12          | --            | 0x5           |
+| Function      	   | Size          | Byte 1        | Byte 2        		 | Response Type | 
+| ------------- 	   | ------------- | ------------- | ------------- 		 | ------------- |
+| Snap a Image  	   | 1Byte         | 0x10          | --            		 | 0x2 + 0x5     |
+| Start Grab    	   | 1Byte         | 0x11          | --            		 | 0x2 + 0x5     |
+| Stop Grab     	   | 1Byte         | 0x12          | --            		 | 0x2 + 0x5     |
 | Set Focus            | 2Bytes        | 0x20          | 0x0: OFF or 0x1: ON | 0x2           |
 | Get Focus status     | 1Byte         | 0x25          | --                  | 0x2           |
 | Set Flash            | 2Bytes        | 0x30          | 0x0: OFF or 0x1: ON | 0x2           |
@@ -87,11 +87,10 @@ The image response message is described in this way:
 
 | Position      | Name             | Size          |
 | ------------- | ---------------- | ------------- |
-| Byte 1        | Command Echo     | 1Byte         | 
-| Byte 2        | Width            | 2Bytes        | 
-| Byte 4        | Height           | 2Bytes        | 
-| Byte 6        | Image Format     | 1Byte         | 
-| Byte 7        | Image Datas      | NBytes        | 
+| Byte 1        | Width            | 2Bytes        | 
+| Byte 3        | Height           | 2Bytes        | 
+| Byte 5        | Image Format     | 1Byte         | 
+| Byte 6        | Image Datas      | NBytes        | 
 
 
 
