@@ -10,9 +10,9 @@ Byte order for all packets are network order (BIG ENDIAN).
 | ------------- | ------------- | ------------- | ----------------- |
 | Start         | 1Byte         | 0xAA          | Start Byte        |
 | Version       | 1Byte         | 0x01          | Protocol Version  |
-| Lenght        | 4Byte         |               | Lenght (Type, Payload and End) |
+| Lenght        | 4Bytes        |               | Lenght (Type, Payload and End) |
 | Type          | 1Byte         |               | Message type      |
-| Payload       | N x 1Bytes    |               | Payload           |
+| Payload       | N x 1Byte     |               | Payload           |
 | Stop          | 1Byte         | 0x55          | End Byte          |
 
 <br>
