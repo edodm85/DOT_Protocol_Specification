@@ -30,7 +30,8 @@ The packet starts with a Start Byte (0xAA) and ends with a Stop Byte (0x55) for 
 
 ## 2. Version
 
-The second Byte is the protocol Version (now is 0x01).
+The second Byte is the protocol Version: 
+* 0x01: first version
 
 <br>
 
@@ -42,7 +43,7 @@ The Length is the payload length plus two (type and stop Byte).
 
 ## 4. Type
 
-The Type identifies if the data is a response or command.
+The Type identifies if the data is a command or a response.
 
 | Value         | Description      |
 | ------------- | ---------------- |
@@ -58,15 +59,17 @@ The Type identifies if the data is a response or command.
 
 Each table row describes a command:
 
-| Function      	   | Size          | Byte 1        | Byte 2        		 | Response Type | 
-| ------------- 	   | ------------- | ------------- | ------------- 		 | ------------- |
-| Snap a Image  	   | 1Byte         | 0x10          | --            		 | 0x2 + 0x5     |
-| Start Grab    	   | 1Byte         | 0x11          | --            		 | 0x2 + 0x5     |
-| Stop Grab     	   | 1Byte         | 0x12          | --            		 | 0x2 + 0x5     |
-| Set Focus            | 2Bytes        | 0x20          | 0x0: OFF or 0x1: ON | 0x2           |
-| Get Focus status     | 1Byte         | 0x25          | --                  | 0x2           |
-| Set Flash            | 2Bytes        | 0x30          | 0x0: OFF or 0x1: ON | 0x2           |
-| Get Flash status     | 1Byte         | 0x35          | --                  | 0x2           |
+| Function      	     | Size          | Payload Byte 1       | Response Type | 
+| ------------- 	     | ------------- | -------------        | ------------- |
+| Snap a Image  	     | 1Byte         | 0x10                 | 0x5           |
+| Start Grab    	     | 1Byte         | 0x11                 | 0x5           |
+| Stop Grab     	     | 1Byte         | 0x12                 | 0x5           |
+| Set Focus OFF        | 1Byte         | 0x20                 | 0x2           |
+| Set Focus ON         | 1Byte         | 0x21                 | 0x2           |
+| Get Focus status     | 1Byte         | 0x25                 | 0x2           |
+| Set Flash OFF        | 1Byte         | 0x30                 | 0x2           |
+| Set Flash ON         | 1Byte         | 0x31                 | 0x2           |
+| Get Flash status     | 1Byte         | 0x35                 | 0x2           |
 
 <br>
 
@@ -78,6 +81,9 @@ The response message is described in this way:
 | ------------- | ---------------- | ------------- |
 | Byte 1        | Command Echo     | 1Byte         | 
 | Byte 2        | Response         | NBytes        |
+
+
+AOK = 0xEE
 
 <br>
 
