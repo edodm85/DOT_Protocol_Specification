@@ -10,7 +10,7 @@ Byte order for all packets are network order (BIG ENDIAN).
 | ------------- | ------------- | ------------- | ----------------- |
 | Start         | 1Byte         | 0xAA          | Start Byte        |
 | Version       | 1Byte         | 0x01          | Protocol Version  |
-| Lenght        | 4Bytes        |               | Lenght (Type, Payload and End) |
+| Lenght        | 4Bytes        |               | Lenght (Type, Payload and Stop) |
 | Type          | 1Byte         |               | Message type      |
 | Payload       | N x 1Byte     |               | Payload           |
 | Stop          | 1Byte         | 0x55          | End Byte          |
@@ -37,7 +37,7 @@ The second Byte is the protocol Version:
 
 ## 3. Lenght
 
-The Length is the payload length plus two (type and stop Byte).
+The Length is the payload length plus two (1Byte Type + 1Byte Stop).
 
 <br>
 
@@ -83,7 +83,7 @@ The response message is described in this way:
 | Byte 2        | Response         | NBytes        |
 
 
-AOK = 0xEE
+ACK = 0xEE
 
 <br>
 
@@ -98,6 +98,57 @@ The image response message is described in this way:
 | Byte 5        | Image Format     | 1Byte         | 
 | Byte 6        | Image Datas      | NBytes        | 
 
+NB: An ACK response is required when an image is received
+
+<br>
+
+## 6. Example
+
+### 6.1 Set focus ON
+
+Send focus ON command (PC --> ANDROID):
+
+| Start [0]  | Version [1]   | Lenght [2-5]  | Type [6] | Payload [7]   | Stop [8]    |
+| ---------- | ------------  | -----------   | -------- | ---------     | -------     |
+| 0xAA       | 0x01          | 3 (dec)       | 0x01     | 0x21          | 0x55        |
+
+Response (ANDROID --> PC):
+
+| Start [0]  | Version [1]   | Lenght [2-5]  | Type [6] | Payload [7-8]   | Stop [9]    |
+| ---------- | ------------  | -----------   | -------- | ---------       | -------     |
+| 0xAA       | 0x01          | 4 (dec)       | 0x02     | 0x21, 0xEE      | 0x55        |
 
 
+
+<br>
+
+### 6.2 Acquire one image
+
+Send One image command (PC --> ANDROID):
+
+| Start [0]  | Version [1]   | Lenght [2-5]  | Type [6] | Payload [7]   | Stop [8]    |
+| ---------- | ------------  | -----------   | -------- | ---------     | -------     |
+| 0xAA       | 0x01          | 3 (dec)       | 0x01     | 0x10          | 0x55        |
+
+Response (ANDROID --> PC):
+
+| Start [0]  | Version [1]   | Lenght [2-5]  | Type [6] | Payload [7-8]   | Stop [9]    |
+| ---------- | ------------  | -----------   | -------- | ---------       | -------     |
+| 0xAA       | 0x01          | 4 (dec)       | 0x02     | 0x10, 0xEE      | 0x55        |
+
+Image response (ANDROID --> PC):
+
+| Start [0]  | Version [1]   | Lenght [2-5]  | Type [6] | Payload [N Byte]                | Stop [N Byte + 1]     |
+| ---------- | ------------  | -----------   | -------- | ---------                       | -------               |
+| 0xAA       | 0x01          | Image lenght  | 0x05     | Witdt, Height, Format, Image    | 0x55                  |
+
+ACK (PC --> ANDROID):
+
+| Start [0]  | Version [1]   | Lenght [2-5]  | Type [6] | Payload [7]   | Stop [8]    |
+| ---------- | ------------  | -----------   | -------- | ---------     | -------     |
+| 0xAA       | 0x01          | 3 (dec)       | 0x02     | 0xEE          | 0x55        |
+
+<br>
+
+### 6.3 Acquire multiple image
 
