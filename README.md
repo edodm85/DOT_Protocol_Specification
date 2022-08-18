@@ -17,7 +17,7 @@ Byte order for all packets are network order (BIG ENDIAN).
 
 <br>
 
-<img src=https://github.com/edodm85/DOT_Protocol_Specification/blob/master/Resources/flowchart_v1.jpg >
+<img src=https://github.com/edodm85/DOT_Protocol_Specification/blob/master/Resources/flowchart_v2.jpg >
 
 <br>
 
