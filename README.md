@@ -1,7 +1,7 @@
 # DOT Protocol Specification
 
 
-An DOT packet consists of a packet header, payload and tail.
+An DOT (Data Over TCP) packet consists of a packet header, payload and tail.
 
 Byte order for all packets are network order (BIG ENDIAN).
 
