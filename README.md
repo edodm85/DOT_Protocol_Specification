@@ -3,7 +3,13 @@
 
 An DOT (Data Over TCP) packet consists of a packet header, payload and tail.
 
-Byte order for all packets are network order (BIG ENDIAN).
+Compatible android applications:
+* Camera WIFI: https://github.com/edodm85/CameraWIFI
+* OV Grabber: soon
+
+<br>
+
+NB: Byte order for all packets are network order (BIG ENDIAN).
 
 
 | Packet        | Size          | Value         | Description       |
@@ -19,8 +25,8 @@ Byte order for all packets are network order (BIG ENDIAN).
 
 <img src=https://github.com/edodm85/DOT_Protocol_Specification/blob/master/Resources/flowchart_v2.jpg >
 
-<br>
 
+<br>
 
 ## 1. Start and Stop
 
