@@ -5,7 +5,7 @@ An DOT (Data Over TCP) packet consists of a packet header, payload and tail.
 
 Compatible android applications:
 * Camera WIFI: https://github.com/edodm85/CameraWIFI
-* OV Grabber: soon
+* TCP Grabber: https://github.com/edodm85/TCP_Grabber
 
 <br>
 
